@@ -77,7 +77,7 @@ public class EmployeeController {
     }
 
 
-     @PostMapping
+    @PostMapping
     @ApiOperation(value = "新增员工")
     public Result save(@RequestBody EmployeeDTO employeeDTO) {
         //获得当前线程id
@@ -97,4 +97,13 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    @PostMapping("/status/{status}")
+    @ApiOperation(value = "启用禁用员工账号")
+    public Result stratOrStop(@PathVariable Integer status, @RequestParam Long id) {
+        log.info("启用禁用员工账号：{},{}", status, id);
+        employeeService.stratOrStop(status, id);
+        return Result.success();
+
+
+    }
 }

@@ -23,4 +23,6 @@ public interface EmployeeService {
      * @return
      */
     PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    void stratOrStop(Integer status, Long id);
 }
