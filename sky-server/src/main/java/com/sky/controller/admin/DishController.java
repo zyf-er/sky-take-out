@@ -55,4 +55,33 @@ public class DishController {
         return Result.success(pageResult);
     }
 
+    /**
+     * 菜品批量删除
+     *
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    @ApiOperation("菜品批量删除")
+    public Result delete(@RequestParam List<Long> ids) {
+        log.info("菜品批量删除：{}", ids);
+        dishService.deleteBatch(ids);//后绪步骤实现
+        return Result.success();
+    }
+
+    /**
+     * 菜品起售停售
+     *
+     * @param status 1 起售，0 停售
+     * @param id     菜品 id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("菜品起售停售")
+    public Result startOrStop(@PathVariable Integer status, Long id) {
+        log.info("菜品起售停售：status={}, id={}", status, id);
+        dishService.startOrStop(status, id);
+        return Result.success();
+    }
+
 }
